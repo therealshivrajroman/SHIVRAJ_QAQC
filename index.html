@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivraj Roman | QA/QC Professional</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --primary-color: #0a2d4d; 
+            --secondary-color: #1a73e8; 
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --card-bg-color: #ffffff;
+            --header-bg-color: rgba(255, 255, 255, 0.85);
+            --light-gray: #f4f7f9;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --background-image-overlay: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95));
+        }
+        
+        body.dark-mode {
+            --primary-color: #ffffff;
+            --secondary-color: #1a73e8;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            --card-bg-color: #1e1e1e;
+            --header-bg-color: rgba(30, 30, 30, 0.85);
+            --light-gray: #1e1e1e;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --background-image-overlay: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--background-image-overlay), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: -1;
+            transition: background-image 0.3s ease;
+        }
+
+        /* Container and Section Styling */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Header and Navigation */
+        .header {
+            background: var(--card-bg-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: background 0.3s ease, padding 0.3s ease;
+        }
+        
+        .header.scrolled {
+            background: var(--header-bg-color);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .header .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .header .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .header .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.25rem;
+            transition: color 0.3s ease;
+        }
+        
+        .header .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .header .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .header .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Theme Switcher */
+        .theme-switcher {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1001;
+        }
+        body.dark-mode .mobile-nav { background: #1e1e1e; }
+        
+        .mobile-nav.open {
+            left: 0;
+        }
+        
+        .mobile-nav .close-icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+        body.dark-mode .mobile-nav .close-icon { color: var(--text-color); }
+
+        
+        .mobile-nav ul {
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .mobile-nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        body.dark-mode .mobile-nav ul li a { color: var(--text-color); }
+
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #0a2d4d; /* Dark blue on hover */
+            border-color: #0a2d4d;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+             background: transparent;
+             color: var(--secondary-color);
+        }
+         .btn-outline:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Home Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+        
+        #home .hero-content {
+             max-width: 800px;
+             margin: auto;
+        }
+        
+        #home .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--secondary-color);
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        #home p.subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+        
+        #home .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        /* About Me Section */
+        #about {
+            background: var(--card-bg-color);
+            border-radius: 15px;
+            padding: 4rem;
+        }
+        #about h2 {
+            text-align: left;
+        }
+        #about p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        #about ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        #about ul li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        #about ul li i {
+            color: var(--secondary-color);
+        }
+
+
+        /* Skills, Projects, Blog, Resources Cards */
+        .card, .skill-card, .resource-item, .value-card {
+            background: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover, .skill-card:hover, .resource-item:hover, .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .skill-card, .value-card { text-align: center; }
+        .skill-card i, .value-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .skill-card ul {
+            list-style-type: none;
+            text-align: left;
+        }
+        .skill-card ul li::before {
+             content: '✓';
+             color: var(--secondary-color);
+             margin-right: 0.5rem;
+             font-weight: bold;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+        .skills-grid, .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card { padding: 0; } /* Reset padding for image cards */
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-content {
+            padding: 2rem;
+        }
+        .card-content ul {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+        .card-content p {
+            font-size: 0.9rem;
+        }
+
+        .resource-list {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .resource-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0;
+            padding: 1.5rem;
+        }
+        .resource-info {
+            flex-grow: 1;
+        }
+        .resource-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        .resource-item h3 {
+            margin-bottom: 0.2rem;
+        }
+        .resource-item p {
+            color: var(--text-color);
+        }
+        .resource-item .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        #contact .container {
+            text-align: center;
+            max-width: 700px;
+        }
+        .contact-info {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-item a:hover {
+            color: var(--secondary-color);
+        }
+        .contact-item i {
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a2d4d;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        body.dark-mode .footer { background: #1e1e1e; }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            transform: translateY(20px);
+            z-index: 999;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .header .nav-links { display: none; }
+            .mobile-menu-icon { display: block; }
+            .card-grid { grid-template-columns: 1fr; }
+            .resource-item .info { flex-basis: 100%; text-align: center; margin-bottom: 1rem; }
+            .resource-item .buttons { flex-basis: 100%; justify-content: center;}
+            #about { padding: 2rem; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#home" class="logo">SHIVRAJ ROMAN</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><i class="fas fa-moon theme-switcher" id="theme-switcher"></i></li>
+                </ul>
+                <i class="fas fa-bars mobile-menu-icon" id="mobile-menu-open"></i>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <i class="fas fa-times close-icon" id="mobile-menu-close"></i>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- ==================== HOME SECTION ==================== -->
+        <section id="home">
+            <div class="container reveal">
+                <div class="hero-content">
+                    <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1780&auto=format&fit=crop" alt="Shivraj Roman Profile Picture" class="profile-pic">
+                    <h1>SHIVRAJ ROMAN</h1>
+                    <p class="subtitle">QA/QC Engineer | Driving Quality and Excellence in Construction</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn"><i class="fas fa-briefcase"></i> View My Work</a>
+                        <a href="resume.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT ME SECTION ==================== -->
+        <section id="about" class="reveal">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>
+                    I am a dedicated QA/QC Engineer with over three years of experience ensuring construction projects meet the highest standards of quality, safety, and compliance. I bridge the gap between design specifications and on-site execution, leveraging technical expertise and data-driven insights to deliver excellence.
+                </p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 3+ years in QA/QC for residential & commercial projects.</li>
+                    <li><i class="fas fa-check-circle"></i> Proficient in IS Codes and contractual standards.</li>
+                    <li><i class="fas fa-check-circle"></i> Skilled in material testing, site inspections, and quality audits.</li>
+                    <li><i class="fas fa-check-circle"></i> Expert in data analysis with Excel and Power BI for KPI tracking.</li>
+                    <li><i class="fas fa-check-circle"></i> Certified in AutoCAD, Python, and Prompt Engineering.</li>
+                    <li><i class="fas fa-check-circle"></i> Ready for immediate deployment in the Alibaug region.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ==================== WHAT I BRING SECTION ==================== -->
+        <section id="value" style="background:transparent;">
+             <div class="container reveal">
+                <h2>What I Bring to Your Project</h2>
+                <div class="value-grid">
+                    <div class="value-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data-Driven Decisions</h3>
+                        <p>Using Excel and Power BI to track KPIs, providing clear insights to prevent issues and improve project outcomes.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Uncompromising Quality</h3>
+                        <p>A meticulous approach to inspections and material testing, ensuring every detail aligns with IS codes and specifications.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Proactive Problem-Solving</h3>
+                        <p>Identifying potential non-conformances before they become costly problems, preparing and managing NCRs effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECTS SECTION ==================== -->
+        <section id="projects">
+            <div class="container reveal">
+                <h2>My Work in Quality Assurance</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1593113646773-69316955a73c?q=80&w=2070&auto=format&fit=crop" alt="Revit BIM Project">
+                        <div class="card-content">
+                            <h3>High-Rise Residential Tower (Revit/BIM)</h3>
+                            <p>This project involved a G+40 story luxury building where I leveraged Building Information Modeling (BIM) to enhance quality control.</p>
+                            <ul>
+                                <li>Used <strong>Revit models</strong> for virtual inspections and to cross-verify rebar details.</li>
+                                <li>Implemented a digital workflow using <strong>BIM 360</strong> for real-time issue tracking.</li>
+                                <li>Monitored high-strength concrete pours (M40 grade) and cube testing results.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1581094376333-4721705655ea?q=80&w=2070&auto=format&fit=crop" alt="AutoCAD Project">
+                        <div class="card-content">
+                            <h3>Large-Scale Commercial Complex (AutoCAD)</h3>
+                            <p>A fast-track commercial project requiring strict adherence to quality standards for structural steel and finishing works.</p>
+                            <ul>
+                                <li>Developed the master Inspection and Test Plan (ITP) using <strong>AutoCAD drawings</strong> and <strong>IS codes</strong>.</li>
+                                <li>Created an Excel KPI tracker, visualized in <strong>Power BI</strong>, to monitor NCR closure rates.</li>
+                                <li>Used AutoCAD layouts on tablets to verify precise installation of facade panels.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BLOG SECTION ==================== -->
+        <section id="blog" style="background:transparent;">
+            <div class="container reveal">
+                <h2>Insights on Quality Management</h2>
+                 <div class="card-grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1583521214690-84333a966576?q=80&w=1974&auto=format&fit=crop" alt="NCR Analysis">
+                        <div class="card-content">
+                            <h3>The Art of the Non-Conformance Report (NCR)</h3>
+                            <p>An effective NCR is a tool for improvement. This post explores the NCR lifecycle, from identification and root cause analysis to corrective and preventive measures, showing how it drives quality.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1581092446347-a725209a3a13?q=80&w=2070&auto=format&fit=crop" alt="Material Testing">
+                        <div class="card-content">
+                            <h3>Top 5 Material Tests Every QA/QC Engineer Must Master</h3>
+                            <p>A practical guide to the essential on-site and lab tests for core materials: Concrete (Slump, Cube), Steel (Tensile, Bend), Aggregates (Sieve Analysis), and Bricks (Water Absorption).</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1621999814329-4c862b719a69?q=80&w=1932&auto=format&fit=crop" alt="On-Site Technology">
+                        <div class="card-content">
+                            <h3>Bridging the Gap: Integrating AutoCAD with On-Site QA/QC</h3>
+                            <p>Technology is closing the distance between design and construction. This post discusses using AutoCAD on tablets for instant measurement verification, markup, and issue flagging on-site.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- ==================== RESOURCES SECTION ==================== -->
+        <section id="resources">
+            <div class="container reveal">
+                <h2>QA/QC Templates & Checklists</h2>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-info">
+                            <h3>Concrete Pour Card & Checklist</h3>
+                            <p>A comprehensive checklist for all concrete pour stages.</p>
+                        </div>
+                        <div class="resource-buttons">
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-pdf"></i> PDF</a>
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-excel"></i> Excel</a>
+                        </div>
+                    </div>
+                     <div class="resource-item">
+                        <div class="resource-info">
+                            <h3>Non-Conformance Report (NCR) Template</h3>
+                            <p>Standardized format for documenting defects and actions.</p>
+                        </div>
+                        <div class="resource-buttons">
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-pdf"></i> PDF</a>
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-word"></i> Word</a>
+                        </div>
+                    </div>
+                     <div class="resource-item">
+                        <div class="resource-info">
+                            <h3>Reinforcement Steel Inspection Checklist</h3>
+                            <p>Verify rebar details against drawings and IS codes.</p>
+                        </div>
+                        <div class="resource-buttons">
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-pdf"></i> PDF</a>
+                             <a href="#" class="btn btn-outline" download><i class="fas fa-file-excel"></i> Excel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" style="background:transparent;">
+            <div class="container reveal">
+                <h2>Get In Touch</h2>
+                <p>I am actively seeking new opportunities and am ready for immediate on-site deployment in Alibaug and the surrounding region. Let's talk about how my skills in quality management can benefit your next project.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <a href="mailto:shivrajroman@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Me</span>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="tel:+918652604789">
+                            <i class="fas fa-phone"></i>
+                            <span>Call Me</span>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://linkedin.com/in/shivrajroman" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <a href="#home" class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SHIVRAJ ROMAN. All Rights Reserved. | Designed with a focus on Quality & Precision.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for enhanced functionality
+        
+        // Sticky Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuOpen = document.getElementById('mobile-menu-open');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNav = document.getElementById('mobile-nav');
+        const navLinks = mobileNav.querySelectorAll('a');
+
+        mobileMenuOpen.addEventListener('click', () => {
+            mobileNav.classList.add('open');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+        
+        // Theme Switcher
+        const themeSwitcher = document.getElementById('theme-switcher');
+        themeSwitcher.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeSwitcher.classList.remove('fa-moon');
+                themeSwitcher.classList.add('fa-sun');
+            } else {
+                themeSwitcher.classList.remove('fa-sun');
+                themeSwitcher.classList.add('fa-moon');
+            }
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+    </script>
+</body>
+</html>
