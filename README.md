@@ -15,7 +15,7 @@ Compliance: Deep understanding of IS Codes and contractual standards.
 🏗️ Professional Experience
 Here are highlights from my past roles:
 
-Capacite InfraProjects Ltd. — QA/QC Engineer
+-Capacite InfraProjects Ltd. — QA/QC Engineer
 
 Conducted rigorous site inspections and material testing to ensure compliance with IS codes and project specifications.
 
@@ -25,13 +25,13 @@ Utilized Excel dashboards for KPI tracking of inspection results and reported fi
 
 Coordinated with contractors to resolve quality non-conformances in a timely manner.
 
-KPMG India (Ajmera Associates) — Associate Consultant
+-KPMG India (Ajmera Associates) — Associate Consultant
 
 Conducted process audits and created compliance dashboards for KPI monitoring.
 
 Automated Excel-based reporting to reduce manual errors and improve reporting accuracy.
 
-Vijay InfraProjects Pvt. Ltd. — Junior Engineer (QA/QC)
+-Vijay InfraProjects Pvt. Ltd. — Junior Engineer (QA/QC)
 
 Performed quality control checks for concrete, steel, and finishing works.
 
