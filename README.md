@@ -49,8 +49,8 @@ Top 5 Material Tests Every QA/QC Engineer Must Master: A practical guide to esse
 Bridging the Gap: Integrating AutoCAD with On-Site QA/QC: Discussing the use of digital drawings on tablets for real-time verification.
 
 📞 Contact Me
-I am actively seeking new opportunities and am ready for immediate deployment in the Alibaug region. Let's connect!
+I am actively seeking new opportunities and am ready for immediate deployment. Let's connect!
 
 Email: shivrajroman@gmail.com
 
-LinkedIn: linkedin.com/in/shivrajroman
+LinkedIn: www.linkedin.com/in/shivrajroman
